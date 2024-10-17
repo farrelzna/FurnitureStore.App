@@ -2,15 +2,83 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
+use Symfony\Component\Mailer\Test\Constraint\EmailCount;
 
 class ProfileController extends Controller
 {
+
+    public function accountEdit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('account.edit', compact('user'));
+    }
+
+    public function accountUpdate(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->update();
+        
+        return redirect($validatedData)->route('account.index')->with('success', 'Update Product Success');
+    }
+
+    public function indexDashboard(Request $request) 
+    {
+        $emailCount = User::distinct('email')->count('email');
+        $users = User::paginate(2);
+
+        return view('dashboard', compact('users','emailCount'));
+    }
+
+    public function index()
+    {
+        $users = User::paginate(5);
+        return view('account.index', compact('users'));
+    }
+
+    public function create()
+    {
+        return view('account.create');
+    }
+
+    public function store(Request $request)
+    {
+        // Validasi input
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+        ]);
+
+        // Simpan data produk setelah validasi berhasil
+        User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+
+        // Redirect atau tampilkan pesan sukses
+        return redirect()->route('account.index')->with('success', 'Added account Success');
+    }
+
+
     /**
      * Display the user's profile form.
      */
@@ -20,6 +88,7 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
 
     /**
      * Update the user's profile information.
@@ -51,6 +120,7 @@ class ProfileController extends Controller
         Auth::logout();
 
         $user->delete();
+
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
