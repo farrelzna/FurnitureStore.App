@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('price');
             $table->integer('stock');
-            $table->string('image')->default('noimage.png');
+            $table->string('image')->default('no-image.png');
             $table->timestamps();
         });
     }

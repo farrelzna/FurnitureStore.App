@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::paginate(6);
-        return view('products.index', compact( 'product'));
+        return view('products.index', compact('product'));
     }
 
     /**
@@ -42,18 +42,20 @@ class ProductController extends Controller
         ]);
 
         $image = $request->file('image');
-        $image->storeAs('public', $image->hashName());
+        $imageName = $image->hashName();
+        $image->move(public_path('upload-image'), $imageName);
 
         Product::create([
             'name' => $request->name,
             'price' => str_replace('.', '', $request->price),
             'stock' => $request->stock,
             'description' => $request->description,
-            'image' => $image->hashName(),
+            'image' => 'upload-image/' . $imageName,
         ]);
 
         return redirect()->route('products.index')->with('success', 'Product created successfully');
     }
+
 
 
     public function edit(Product $product)
@@ -78,7 +80,7 @@ class ProductController extends Controller
 
         if ($request->file('image')) {
 
-            if ($product->image === 'noimage.png') {
+            if ($product->image === 'no-image.png') {
                 Storage::disk('local')->delete('public/' . $product->image);
             }
             $image = $request->file('image');

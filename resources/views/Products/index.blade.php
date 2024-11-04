@@ -26,7 +26,7 @@
                 @foreach ($product as $item)
                     <div>
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                            <img src="{{ url('storage/' . $item->image) }}" class="h-96 w-full object-cover">
+                            <img src="{{ asset('/' . $item->image) }}" class="h-96 w-full object-cover">    
                             <div class="p-6">
                                 <p class="text-xl font-semibold">{{ $item->name }}</p>
                                 <p class="mt-2 font-semibold text-gray-500">Rp. {{ number_format($item->price) }}</p>

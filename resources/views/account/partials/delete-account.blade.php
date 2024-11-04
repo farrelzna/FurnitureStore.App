@@ -5,7 +5,7 @@
     >{{ __('Delete account') }}</x-danger-button>
 
     <x-modal name="confirm-delete-account" focusable>
-        <form method="post" action="{{ route('account.destroy', $user) }}" class="p-6">
+        <form method="post" action="" class="p-6">
             @csrf
             @method('DELETE')
 

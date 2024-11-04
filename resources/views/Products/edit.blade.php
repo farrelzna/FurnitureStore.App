@@ -14,7 +14,7 @@
 
             <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h1 class="p-6 font-semibold">Edit Product Data</h1>
-                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl: '/storage/{{ $product->image }}' }">
+                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl: '{{ $product->image }}' }">
                     <!-- Tambahkan class w-full untuk form -->
 
                     <form enctype="multipart/form-data" method="POST" action="{{ route('products.update' , $product->id) }}"
@@ -68,7 +68,7 @@
                                     {{ __('Submit') }}
                                 </x-primary-button>
                                 
-                                    <a href="{{ route('account.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'">Back</a>
+                                    <a href="{{ route('products.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'">Back</a>
                             </div>
 
                         </div>
