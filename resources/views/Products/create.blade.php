@@ -10,28 +10,22 @@
                 </div>
             </div>
             <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <h1 class="p-6 font-semibold">Create Product Data</h1>
-                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl : '/public/img/no-image.png'}">
+                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl : '/public/no-image.png'}">
                     <!-- Tambahkan class w-full untuk form -->
                     <form enctype="multipart/form-data" method="POST" action="{{ route('products.store') }}" class="flex gap-8 w-full">
-
+                        
                         @csrf
-
+                        
                         <div class="w-1/2">
                             <img :src="imageUrl" class="rounded-md">
                         </div>
 
                         <div class="w-1/2">
                             <div class="mt-4">
-                                <x-input-label for="image" :value="old('Image')" />
-                                <x-text-input 
-                                accept="image/*"
-                                id="image" 
-                                class="block mt-1 w-full border p-2" 
-                                type="file" 
-                                name="image"
-                                    :value="old('image')" 
-                                    autofocus autocomplete="username"
+                                <h1 class="p-6 font-semibold">Create Product Data</h1>
+                                <x-input-label for="image" :value="__('Image')" />
+                                <x-text-input accept="image/*" id="image" class="block mt-1 w-full border p-2" 
+                                    type="file" name="image"
                                     @change="imageUrl = URL.createObjectURL($event.target.files[0])"
                                     />
                                 <x-input-error :messages="$errors->get('image')" class="mt-2" />

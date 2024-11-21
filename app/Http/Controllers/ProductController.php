@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 
-
-
 class ProductController extends Controller
 {
     /**
@@ -19,10 +17,7 @@ class ProductController extends Controller
         $product = Product::paginate(6);
         return view('products.index', compact('product'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create(Request $request)
     {
         return view('products.create', compact('request'));
@@ -33,13 +28,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate
+        (
+    [
             'name' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
+            ]
+        );
 
         $image = $request->file('image');
         $imageName = $image->hashName();
@@ -57,12 +55,10 @@ class ProductController extends Controller
     }
 
 
-
     public function edit(Product $product)
     {
         return view('products.edit', compact('product'));
     }
-
 
     public function update(Request $request, Product $product)
     {
@@ -71,24 +67,31 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
             'description' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
-        $product->name = $request->name;
-        $product->price = str_replace(',', '', $request->price);
-        $product->stock = $request->stock;
-        $product->description = $request->description;
+        // Update atribut produk
+        $product->fill([
+            'name' => $request->name,
+            'price' => str_replace(',', '', $request->price),
+            'stock' => $request->stock,
+            'description' => $request->description,
+        ]);
 
-        if ($request->file('image')) {
-
-            if ($product->image === 'no-image.png') {
-                Storage::disk('local')->delete('public/' . $product->image);
+        // Update gambar jika ada unggahan baru
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama kecuali jika gambar default
+            if ($product->image && $product->image !== 'no-image.png') {
+                Storage::delete('public/upload-image/' . $product->image);
             }
-            $image = $request->file('image');
-            $image->storeAs('public', $image->hashName());
-            $product->image = $image->hashName();
+
+            // Simpan gambar baru dan perbarui atribut gambar produk
+            $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('upload-image'), $imageName);
+            $product->image = 'upload-image/' . $imageName;
         }
 
-        $product->update();
+        $product->save();
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }

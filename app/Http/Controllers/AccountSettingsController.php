@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Product;
 use Symfony\Component\Mailer\Test\Constraint\EmailCount;
 
-class ProfileController extends Controller
+class AccountSettingsController extends Controller
 {
 
     public function accountEdit($id)
@@ -41,16 +42,31 @@ class ProfileController extends Controller
 
     public function indexDashboard(Request $request) 
     {
+        $productCount = Product::distinct('name')->count('name');
         $emailCount = User::distinct('email')->count('email');
+
         $users = User::paginate(2);
 
-        return view('dashboard', compact('users','emailCount'));
+        return view('dashboard', compact('users','emailCount', 'productCount'));
+    }
+
+    public function indexHome(Request $request)
+    {
+        $products = Product::simplePaginate(3);
+        $users = User::all();
+        return view('home', compact('users', 'products'));
     }
 
     public function index()
     {
         $users = User::paginate(5);
         return view('account.index', compact('users'));
+    }
+
+    public function showProfile()
+    {
+        $users = User::all();
+        return view('profile.index');
     }
 
     public function create()
@@ -82,7 +98,7 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function settingAcount(Request $request): View
     {
         return view('profile.edit', [
             'user' => $request->user(),
@@ -103,7 +119,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('accountSettings.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -125,6 +141,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('/home');
     }
 }

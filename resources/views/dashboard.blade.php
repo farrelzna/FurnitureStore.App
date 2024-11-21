@@ -1,4 +1,4 @@
-<x-app-layout>
+/
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -7,11 +7,11 @@
                     {{ __("You're logged in!") }}
 
                     <a href="{{ route('products.index') }}"
-                        class="p-6 items-center dark:bg-gray-800  text-white hover:bg-gray-700 px-10 py-2 rounded-md font-semibold">
+                        class="p-6 items-center dark:bg-gray-800 text-white hover:bg-gray-700 px-10 py-2 rounded-md font-semibold">
                         Start</a>
 
                 </div>
-            </div>
+            </div>  
         </div>
     </div>
 
@@ -33,19 +33,19 @@
 
                     <!-- Example Dashboard Stats -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-                        <div class="p-4 bg-blue-500 text-white rounded-lg shadow">
+                        <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
                             <h4 class="text-lg font-semibold">Total Users</h4>
                             <p class="mt-2 text-2xl">{{ $emailCount }}</p>
                         </div>
-                        <div class="p-4 bg-green-500 text-white rounded-lg shadow">
-                            <h4 class="text-lg font-semibold">New Orders</h4>
-                            <p class="mt-2 text-2xl">567</p>
+                        <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
+                            <h4 class="text-lg font-semibold">Total Products</h4>
+                            <p class="mt-2 text-2xl">{{ $productCount }}</p>
                         </div>
-                        <div class="p-4 bg-red-500 text-white rounded-lg shadow">
+                        <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
                             <h4 class="text-lg font-semibold">Pending Tasks</h4>
                             <p class="mt-2 text-2xl">89</p>
                         </div>
-                        <div class="p-4 bg-yellow-500 text-white rounded-lg shadow">
+                        <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700    rounded-lg shadow">
                             <h4 class="text-lg font-semibold">Messages</h4>
                             <p class="mt-2 text-2xl">42</p>
                         </div>

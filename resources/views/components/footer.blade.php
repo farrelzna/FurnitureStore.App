@@ -1,4 +1,4 @@
-<footer class="bg-gray-800 text-white py-8 mt-16">
+<footer class="bg-gray-800 text-white py-8">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -45,7 +45,7 @@
 
         <!-- Copyright Section -->
         <div class="mt-8 border-t border-gray-700 pt-4 text-center text-gray-400 text-sm">
-            &copy; 2024 PenjualanBarangApp. All rights reserved.
+            &copy; 2024 ToMoApp. All rights reserved.
         </div>
 
     </div>

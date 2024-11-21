@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AccountSettingsController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,34 +16,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', [ProfileController::class, 'indexDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [AccountSettingsController::class, 'indexHome'])->name('home');
+Route::get('/dashboard', [AccountSettingsController::class, 'indexDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
 
     // Products
-    Route::resource('products', ProductController::class);
+    Route::resource('/products', ProductController::class);
     Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+    // Vouchers
+    Route::resource('/vouchers', VoucherController::class);
+    Route::get('/vouchers/{id}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
 
     // Orders
 
     // Accounts
-    Route::get('/account', [ProfileController::class, 'index'])->name('account.index');
-    Route::get('/account/create', [ProfileController::class, 'create'])->name('account.create');
-    Route::post('account', [ProfileController::class, 'store'])->name('account.store');
-    Route::get('account/{user}/edit', [ProfileController::class, 'accountEdit'])->name('account.edit');
-    Route::put('account/{user}', [ProfileController::class, 'accountUpdate'])->name('account.update');
-    Route::delete('/account/{id}', [ProfileController::class, 'destroy'])->name('account.destroy');
+    Route::get('/account', [AccountSettingsController::class, 'index'])->name('account.index');
+    Route::get('/account/create', [AccountSettingsController::class, 'create'])->name('account.create');
+    Route::post('account', [AccountSettingsController::class, 'store'])->name('account.store');
+    Route::get('account/{user}/edit', [AccountSettingsController::class, 'accountEdit'])->name('account.edit');
+    Route::put('account/{user}', [AccountSettingsController::class, 'accountUpdate'])->name('account.update');
+    Route::delete('/account/{id}', [AccountSettingsController::class, 'destroy'])->name('account.destroy');
 
-
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Profile / Settings
+    Route::get('/Profile', [AccountSettingsController::class, 'showProfile'])->name('showProfile');
+    Route::get('/settings', [AccountSettingsController::class, 'settingAcount'])->name('accountSettings.edit');
+    Route::patch('/settings', [AccountSettingsController::class, 'update'])->name('accountSettings.update');
+    Route::delete('/setings', [AccountSettingsController::class, 'destroy'])->name('accountSettings.destroy');
 });
 
 require __DIR__ . '/auth.php';

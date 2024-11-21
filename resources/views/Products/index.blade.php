@@ -8,7 +8,7 @@
                     {{ __('Product Data') }}
                
                     <a href="{{ route('products.create') }}"
-                        class="p-6 items-center dark:bg-gray-800  text-white hover:bg-gray-700 px-10 py-2 rounded-md font-semibold">+
+                        class="p-6 items-center dark:bg-gray-800 text-white hover:bg-gray-700 px-10 py-2 rounded-md font-semibold">+
                         Add</a>
 
                 </div>
