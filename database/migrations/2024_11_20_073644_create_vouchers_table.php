@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('voucers', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->integer('price');
+            $table->integer('discount');
             $table->integer('stock');
             $table->enum('type', ['Delivery Vouchers', 'Item Vouchers']);
+            $table->string('image')->default('/public/no-image.png');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('voucers');
+        Schema::dropIfExists('vouchers');
     }
 };

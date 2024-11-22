@@ -14,9 +14,8 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        $voucher = Voucher::all();
-
-        return view('vouchers.index', compact('vouchers'));
+        $voucher = Voucher::paginate(6);
+        return view('vouchers.index', compact('voucher'));
     }
 
     /**
@@ -32,28 +31,33 @@ class VoucherController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate
-        (
-    [
-            'name' => 'required',
-            'price' =>' required|numeric',
-            'stock' => 'required|numeric',
-            'type' => 'required',
-            'description' => 'required',
-            ]
-        );
+        $request->validate(
+                [
+                    'name' => 'required',
+                    'discount' => ' required|numeric',
+                    'stock' => 'required|numeric',
+                    'type' => 'required',
+                    'description' => 'required',
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                ]
+            );
+
+        $image = $request->file('image');
+        $imageName = $image->hashName();
+        $image->move(public_path('upload-image'), $imageName);
 
         Voucher::create(
             [
                 'name' => $request->name,
-                'price' => $request->price,
+                'discount' => $request->discount,
                 'stock' => $request->stock,
                 'type' => $request->type,
                 'description' => $request->description,
+                'image' => 'upload-image/' . $imageName,
             ]
         );
 
-        return redirect()->route('vouchers.index')->with('success', 'Vouchers Created successfully');
+        return redirect()->route('vouchers.index')->with('success', 'voucher Created successfully');
     }
 
     /**
@@ -69,7 +73,7 @@ class VoucherController extends Controller
      */
     public function edit(Voucher $voucher)
     {
-        return view('vouchers.edit', compact('voucer'));
+        return view('vouchers.edit', compact('voucher'));
     }
 
     /**
@@ -80,29 +84,45 @@ class VoucherController extends Controller
         $request->validate(
             [
                 'name' => 'required',
-                'price' =>' required|numeric',
+                'discount' => 'required',
                 'stock' => 'required|numeric',
                 'type' => 'required',
                 'description' => 'required',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             ]
         );
 
         $voucher->fill(
             [
                 'name' => $request->name,
-                'price' => $request->price,
+                'discount' => $request->discount,
                 'stock' => $request->stock,
                 'type' => $request->type,
                 'description' => $request->description,
             ]
-            );
+        );
 
-            return redirect()->route('vouchers.index')->with('success', 'Product updated successfully');
+        // Update gambar jika ada unggahan baru
+        if ($request->hasFile('image')) {
+            // Hapus gambar lama kecuali jika gambar default
+            if ($voucher->image && $voucher->image !== 'no-image.png') {
+                Storage::delete('public/upload-image/' . $voucher->image);
+            }
+
+            // Simpan gambar baru dan perbarui atribut gambar produk
+            $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('upload-image'), $imageName);
+            $voucher->image = 'upload-image/' . $imageName;
+        }
+
+        $voucher->save();
+
+        return redirect()->route('vouchers.index')->with('success', 'Product updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
-     */
+     */ 
     public function destroy(Voucher $voucher)
     {
         if ($voucher->image === 'noimage.png') {
@@ -110,6 +130,6 @@ class VoucherController extends Controller
         }
 
         $voucher->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+        return redirect()->route('vouchers.index')->with('success', 'voucher deleted successfully');
     }
 }

@@ -10,9 +10,10 @@ class Voucher extends Model
     use HasFactory;
 
     protected $fillable = [
+        'image',
         'name',
         'description',
-        'price',
+        'discount',
         'stock',
         'type',
     ];

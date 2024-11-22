@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountSettingsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/account/{id}', [AccountSettingsController::class, 'destroy'])->name('account.destroy');
 
     // Profile / Settings
-    Route::get('/Profile', [AccountSettingsController::class, 'showProfile'])->name('showProfile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('showProfile');
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('profile/edit', [ProfileController::class, 'update'])->name('profile.update');
+
+    // Account Settings
     Route::get('/settings', [AccountSettingsController::class, 'settingAcount'])->name('accountSettings.edit');
     Route::patch('/settings', [AccountSettingsController::class, 'update'])->name('accountSettings.update');
     Route::delete('/setings', [AccountSettingsController::class, 'destroy'])->name('accountSettings.destroy');

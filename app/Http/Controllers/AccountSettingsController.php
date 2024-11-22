@@ -40,6 +40,15 @@ class AccountSettingsController extends Controller
         return redirect($validatedData)->route('account.index')->with('success', 'Update Product Success');
     }
 
+    public function settingAcount(Request $request): View
+    {
+        return view('profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public function indexDashboard(Request $request) 
     {
         $productCount = Product::distinct('name')->count('name');
@@ -63,11 +72,7 @@ class AccountSettingsController extends Controller
         return view('account.index', compact('users'));
     }
 
-    public function showProfile()
-    {
-        $users = User::all();
-        return view('profile.index');
-    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
 
     public function create()
     {
@@ -93,18 +98,6 @@ class AccountSettingsController extends Controller
         // Redirect atau tampilkan pesan sukses
         return redirect()->route('account.index')->with('success', 'Added account Success');
     }
-
-
-    /**
-     * Display the user's profile form.
-     */
-    public function settingAcount(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
-
 
     /**
      * Update the user's profile information.

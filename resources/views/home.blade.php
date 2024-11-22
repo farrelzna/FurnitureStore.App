@@ -12,31 +12,31 @@
             <div class="relative h-56 overflow-hidden rounded-tr-lg rounded-br-lg md:h-80">
                 <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/chair1.jpeg') }}"
+                    <img src="{{ asset('assets/img/Product/chair1.jpeg') }}"
                         class="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="">
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                    <img src="{{ asset('assets/img/chair2.jpeg') }}"
+                    <img src="{{ asset('assets/img/Product/chair2.jpeg') }}"
                         class="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="">
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/table1.jpeg') }}"
+                    <img src="{{ asset('assets/img/Product/table1.jpeg') }}"
                         class="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="">
                 </div>
                 <!-- Item 4 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/storagerack1.jpeg') }}"
+                    <img src="{{ asset('assets/img/Product/storagerack1.jpeg') }}"
                         class="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="">
                 </div>
                 <!-- Item 5 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/storagerack2.jpeg') }}"
+                    <img src="{{ asset('assets/img/Product/storagerack2.jpeg') }}"
                         class="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="">
                 </div>
