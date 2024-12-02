@@ -30,11 +30,11 @@ Route::middleware('auth')->group(function () {
 
     // Products
     Route::resource('/products', ProductController::class);
-    Route::delete('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    // Route::get('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
     // Vouchers
     Route::resource('/vouchers', VoucherController::class);
-    Route::get('/vouchers/{id}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
+    // Route::get('/vouchers/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
 
     // Orders
 

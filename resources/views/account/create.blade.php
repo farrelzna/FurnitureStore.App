@@ -39,13 +39,6 @@
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
 
-                            <div class="mt-4">
-                                <x-input-label for="password" :value="__('Password')" />
-                                <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
-                                    :value="old('password')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                            </div>
-
                             <div class="flex items-center justify-between mt-4">
                                 <div class="flex">
                                     <x-primary-button>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Voucher;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
-use App\Models\Product;
 use Symfony\Component\Mailer\Test\Constraint\EmailCount;
 
 class AccountSettingsController extends Controller
@@ -51,19 +52,21 @@ class AccountSettingsController extends Controller
 
     public function indexDashboard(Request $request) 
     {
+        $voucherCount = Voucher::distinct('name')->count('name');
         $productCount = Product::distinct('name')->count('name');
         $emailCount = User::distinct('email')->count('email');
 
         $users = User::paginate(2);
 
-        return view('dashboard', compact('users','emailCount', 'productCount'));
+        return view('dashboard', compact('users','emailCount', 'productCount', 'voucherCount'));
     }
 
     public function indexHome(Request $request)
     {
+        $voucher = Voucher::all();
         $products = Product::simplePaginate(3);
         $users = User::all();
-        return view('home', compact('users', 'products'));
+        return view('home', compact('users', 'products', 'voucher'));
     }
 
     public function index()

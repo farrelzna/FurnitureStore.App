@@ -16,10 +16,7 @@
                         @method('PUT')
 
                         <div class="w-1/2">
-                            <div class="mt-4">
-                                <!-- Tampilkan gambar jika sudah ada -->
-                                <img :src="imageUrl" class="w-full h-96 object-cover mb-4" alt="Product Image">
-                            </div>
+                            <img :src="imageUrl" class="rounded-md" alt="Product Image">
                         </div>
 
                         <div class="w-1/2">

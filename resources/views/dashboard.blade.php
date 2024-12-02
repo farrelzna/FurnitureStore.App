@@ -11,7 +11,7 @@
                         Start</a>
 
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
 
@@ -21,7 +21,7 @@
         </h2>
     </x-slot>
 
-    <div>
+    <div class="pb-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -42,12 +42,12 @@
                             <p class="mt-2 text-2xl">{{ $productCount }}</p>
                         </div>
                         <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
+                            <h4 class="text-lg font-semibold">Total Vouchers</h4>
+                            <p class="mt-2 text-2xl">{{ $voucherCount }}</p>
+                        </div>
+                        <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
                             <h4 class="text-lg font-semibold">Pending Tasks</h4>
                             <p class="mt-2 text-2xl">89</p>
-                        </div>
-                        <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700    rounded-lg shadow">
-                            <h4 class="text-lg font-semibold">Messages</h4>
-                            <p class="mt-2 text-2xl">42</p>
                         </div>
                     </div>
 

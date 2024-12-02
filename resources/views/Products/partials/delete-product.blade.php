@@ -5,7 +5,7 @@
     >{{ __('Delete Product') }}</x-danger-button>
 
     <x-modal name="confirm-delete-product" focusable>
-        <form method="post" action="{{ route('products.destroy', $product) }}" class="p-6">
+        <form method="POST" action="{{ route('products.destroy', $product) }}" class="p-6">
             @csrf
             @method('DELETE')
 

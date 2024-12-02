@@ -101,7 +101,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if ($product->image === 'noimage.png') {
+        if ($product->image !== 'noimage.png') {
             Storage::disk('local')->delete('app/public/' . $product->image);
         }
 

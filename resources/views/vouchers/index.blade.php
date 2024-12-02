@@ -75,13 +75,14 @@
             </div>
         </div>
 
-        <div>
+        <div class="pb-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
-                <div class="grid gap-6 py-10">
+                <div class="grid gap-6">
                     @foreach ($voucher as $item)
-                        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex">
+                        <div
+                            class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex duration-300 form ease-in-out filter transition hover:shadow-lg">
                             <!-- Bagian Gambar -->
-                            <img src="{{ asset('/' . $item->image) }}" class="h-48 w-48 object-cover sm:rounded-l-lg">
+                            <img src="{{ asset('/' . $item->image) }}" class="h-fill w-48 object-cover sm:rounded-l-lg">
 
                             <!-- Bagian Detail -->
                             <div class="p-6 flex flex-col justify-between w-full">
@@ -94,16 +95,21 @@
                                 </div>
 
                                 <!-- Tombol Add Cart -->
-                                <div class="mt-4 flex justify-end">
-                                    <a href="{{ route('vouchers.edit', $item->id) }}"
+                                <div class="p-6 flex items-center justify-between">
+                                    <div class="flex items-center mt-2.5 mb-5">
+                                        <span
+                                            class="bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded">5.0</span>
+                                    </div>
+                                    <a href="#"
                                         class="flex items-center gap-2 dark:bg-gray-800 text-white hover:bg-gray-700 px-6 py-2 rounded-md font-semibold">
                                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M3 10h18M6 14h2m3 0h5M3 7v10a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1Z" />
                                         </svg>
-                                        Add Cart
+                                        Use Voucher
                                     </a>
                                 </div>
                             </div>

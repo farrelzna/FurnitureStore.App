@@ -20,7 +20,7 @@
         <x-alert message="{{ session('success') }}" />
     @endif
 
-    <div>
+    <div class="pb-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12 ">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -44,13 +44,18 @@
                                 <tbody class="text-gray-600 text-sm">
                                     @foreach ($product as $item)
                                         <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                            <td class="py-3 px-6">{{ $item->name }} <br> <a
-                                                    href="{{ route('products.edit', $item) }}">
-                                                    <button
-                                                        class="dark:bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 px-10 py-1 my-1 rounded-md font-semibold mb-2 transition ease-in-out duration-150">Edit</button>
-                                                </a>
-                                                <button>@include('products.partials.delete-product')</button>
-                                                </a>
+                                            <td class="py-3 px-6">
+                                                {{ $item->name }}
+                                                <br>
+                                                <div class="flex items-center space-x-2"> <!-- Flex container -->
+                                                    <a href="{{ route('products.edit', $item) }}">
+                                                        <button
+                                                            class="dark:bg-gray-800 text-white hover:bg-gray-700 active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 px-10 py-1 rounded-md font-semibold transition ease-in-out duration-150">
+                                                            Edit
+                                                        </button>
+                                                    </a>
+                                                    @include('products.partials.delete-product')
+                                                </div>
                                             </td>
                                             <td class="py-3 px-6">{{ $item->stock }}</td>
                                             <td class="py-3 px-6">Rp. {{ number_format($item->price, '0', ',', '.') }}
@@ -75,17 +80,23 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
                 <div class="grid md:grid-cols-3 grid-cols-2 gap-6">
                     @foreach ($product as $item)
-                        <div class="mb-10">
-                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div>
+                            <div
+                                class="bg-white overflow-hidden shadow-sm sm:rounded-lg duration-300 form ease-in-out filter transition hover:shadow-lg">
                                 <img src="{{ asset('/' . $item->image) }}" class="h-96 w-full object-cover">
                                 <div class="p-6">
-                                    <p class="text-xl font-semibold">{{ $item->name }}</p>
+                                    <p class="text-xl font-semibold tracking-tight text-gray-900">{{ $item->name }}
+                                    </p>
                                     <p class="mt-2 font-semibold text-gray-500">Rp. {{ number_format($item->price) }}
                                     </p>
                                     <p class="text-sm text-gray-400 font-semibold">Stock : {{ $item->stock }}</p>
                                     <p class="mt-3 text-justify">{{ $item->description }}</p>
                                 </div>
-                                <div class="p-6 flex justify-end">
+                                <div class="p-6 flex items-center justify-between">
+                                    <div class="flex items-center mt-2.5 mb-5">
+                                        <span
+                                            class="bg-gray-200 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded">5.0</span>
+                                    </div>
                                     <a href="{{ route('products.edit', $item->id) }}"
                                         class="p-6 flex gap-2 items-center dark:bg-gray-800 text-white hover:bg-gray-700 px-10 py-2 rounded-md font-semibold"><svg
                                             class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"

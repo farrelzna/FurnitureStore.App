@@ -117,7 +117,7 @@ class VoucherController extends Controller
 
         $voucher->save();
 
-        return redirect()->route('vouchers.index')->with('success', 'Product updated successfully');
+        return redirect()->route('vouchers.index')->with('success', 'Voucher updated successfully');
     }
 
     /**
