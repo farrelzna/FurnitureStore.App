@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl: '/public/no-image.png' }">
+                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl: '../no-image.png' }">
                     <!-- Tambahkan class w-full untuk form -->
                     <form enctype="multipart/form-data" method="POST" action="{{ route('vouchers.store') }}"
                         class="flex gap-8 w-full">
@@ -55,6 +55,13 @@
                                     :value="old('stock')" required autofocus autocomplete="username" />
                                 <x-input-error :messages="$errors->get('stock')" class="mt-2" />
                             </div>
+                            
+                            <div class="mt-4">
+                                <x-input-label for="discount" :value="__('Discount (Price)')" />
+                                <x-text-input id="discount" class="block mt-1 w-full" type="number" name="discount"
+                                    :value="old('discount')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('discount')" class="mt-2" />
+                            </div>
 
                             <div class="mt-4">
                                 <x-input-label for="description" :value="__('Description')" />
@@ -62,13 +69,6 @@
                                     name="description" required autofocus
                                     autocomplete="username">{{ old('description') }}</x-text-area>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                            </div>
-                            
-                            <div class="mt-4">
-                                <x-input-label for="discount" :value="__('Discount (Price)')" />
-                                <x-text-input id="discount" class="block mt-1 w-full" type="number" name="discount"
-                                    :value="old('discount')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                             </div>
 
                             <div class="mt-4 flex justify-between">

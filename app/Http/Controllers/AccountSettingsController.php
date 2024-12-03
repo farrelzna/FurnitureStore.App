@@ -28,17 +28,23 @@ class AccountSettingsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'gender' => 'required|in:Male,Female',
+            'password' => 'nullable|min:8'
         ]);
+
         $user = User::findOrFail($id);
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->name = $validatedData['name'];
+        $user->email = $request['email'];
+        $user->gender = $request['gender'];
 
-        $user->update();
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
         
-        return redirect($validatedData)->route('account.index')->with('success', 'Update Product Success');
+        return redirect()->route('account.index')->with('success', 'Update Product Success');
     }
 
     public function settingAcount(Request $request): View

@@ -47,7 +47,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12 ">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <h3 class="text-lg font-medium text-gray-900">Welcome to your Data Product Dashboard!</h3>
+                    <div class="flex justify-between">
+                        <h3 class="text-lg font-medium text-gray-900">Welcome to your Data Product Dashboard!</h3>
+                        <a href="{{ route('products.export.excel') }}" class="p-6 items-center dark:bg-gray-800 text-white hover:bg-gray-700 px-10 py-2 rounded-md font-semibold">Export</a>
+                    </div>
                     <p class="mt-2 text-sm text-gray-600">
                         Here you can manage your Product, view stats, and more.
                     </p>

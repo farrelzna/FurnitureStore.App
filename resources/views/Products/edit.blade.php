@@ -62,17 +62,17 @@
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="description" :value="__('Description')" />
-                                <x-text-area id="description" class="block mt-1 w-full" type="text"
-                                    name="description">{{ $product->description }}</x-text-area>
-                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                            </div>
-
-                            <div class="mt-4">
                                 <x-input-label for="price" :value="__('Price')" />
                                 <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
                                     :value="$product->price" required />
                                 <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-4">
+                                <x-input-label for="description" :value="__('Description')" />
+                                <x-text-area id="description" class="block mt-1 w-full" type="text"
+                                    name="description">{{ $product->description }}</x-text-area>
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
                             </div>
 
                             <div class="mt-4 flex justify-between">

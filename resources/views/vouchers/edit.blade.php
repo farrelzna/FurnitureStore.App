@@ -1,4 +1,4 @@
-<x-app-layout>
+div<x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -42,17 +42,17 @@
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="discount" :value="__('Discount')" />
-                                <x-text-input id="discount" class="block mt-1 w-full" type="number" name="discount"
-                                    :value="$voucher->discount" required />
-                                <x-input-error :messages="$errors->get('discount')" class="mt-2" />
-                            </div>
-
-                            <div class="mt-4">
                                 <x-input-label for="stock" :value="__('Stock')" />
                                 <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock"
                                     :value="$voucher->stock" required />
                                 <x-input-error :messages="$errors->get('stock')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-4">
+                                <x-input-label for="discount" :value="__('Discount')" />
+                                <x-text-input id="discount" class="block mt-1 w-full" type="number" name="discount"
+                                    :value="$voucher->discount" required />
+                                <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                             </div>
 
                             <div class="mt-4">

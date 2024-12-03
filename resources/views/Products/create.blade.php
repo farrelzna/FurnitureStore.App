@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="mt-6 bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl: '/public/no-image.png' }">
+                <div class="flex justify-between items-center p-6 text-gray-900" x-data="{ imageUrl: '../no-image.png' }">
                     <!-- Tambahkan class w-full untuk form -->
                     <form enctype="multipart/form-data" method="POST" action="{{ route('products.store') }}"
                         class="flex gap-8 w-full">
@@ -40,8 +40,19 @@
 
                             <div class="mt-4">
                                 <x-input-label for="type" :value="__('Category')" />
-                                <x-text-input id="type" class="block mt-1 w-full" type="text" name="type"
-                                    :value="$product->type" required />
+                                <select id="type" name="type"
+                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md w-full"
+                                    required autofocus>
+                                    <option value="" disabled selected>Select Type of Product</option>
+                                    <option value="Chair">Chair</option>
+                                    <option value="Sofa">Sofa</option>
+                                    <option value="Table">Table</option>
+                                    <option value="Bed">Bed</option>
+                                    <option value="Lamp">Lamp</option>
+                                    <option value="Wardrobe">Wardrobe</option>
+                                    <option value="Storage Rack">Storage Rack</option>
+                                    <option value="Other">Other</option>
+                                </select>
                                 <x-input-error :messages="$errors->get('type')" class="mt-2" />
                             </div>
 
@@ -53,18 +64,18 @@
                             </div>
 
                             <div class="mt-4">
+                                <x-input-label for="price" :value="__('Price')" />
+                                <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
+                                    :value="old('price')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                            </div>
+                            
+                            <div class="mt-4">
                                 <x-input-label for="description" :value="__('Description')" />
                                 <x-text-area id="description" class="block mt-1 w-full" type="text"
                                     name="description" required autofocus
                                     autocomplete="username">{{ old('description') }}</x-text-area>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                            </div>
-
-                            <div class="mt-4">
-                                <x-input-label for="price" :value="__('Price')" />
-                                <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
-                                    :value="old('price')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
                             </div>
 
                             <div class="mt-4 flex justify-between">
