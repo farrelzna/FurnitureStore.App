@@ -43,7 +43,7 @@
                 </div>
                 <!-- Item 6 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Product/dining chair and table package.jpeg') }}"
+                    <img src="{{ asset('assets/img/Product/SetDiningChair1.jpeg') }}"
                         class="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                         alt="">
                 </div>
@@ -384,7 +384,7 @@
     <section id="discounts" class="py-12 bg-gray-50">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold text-center mb-6 text-gray-700">Special Discounts</h2>
-            <div class="relative flex">
+            <div class="relative flex gap-16">
                 <!-- Slider Container -->
                 <div>
                     <div class="max-w-7xl mx-auto sm:pe-6 lg:pe-8">
@@ -431,7 +431,7 @@
                     <figure class="max-w-sm transition-all">
                         <a href="{{ $isLoggedIn ? url('/products') : route('login') }}">
                             <img class="mb-4 duration-300 cursor-pointer filter rounded-lg grayscale hover:grayscale-0"
-                                src="{{ asset('assets/img/sale/saleimg.png') }}" alt="image description">
+                                src="{{ asset('assets/img/sale/sale2.png') }}" alt="image description">
                             <div
                                 class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
                                 <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl dark:text-white">

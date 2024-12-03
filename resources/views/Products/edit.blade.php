@@ -37,10 +37,21 @@
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="price" :value="__('Price')" />
-                                <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
-                                    :value="$product->price" required />
-                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                                <x-input-label for="type" :value="__('Category')" />
+                                <select id="type" name="type"
+                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md w-full"
+                                    required autofocus>
+                                    <option value="" disabled selected>Select Type of Product</option>
+                                    <option value="Chair">Chair</option>
+                                    <option value="Sofa">Sofa</option>
+                                    <option value="Table">Table</option>
+                                    <option value="Bed">Bed</option>
+                                    <option value="Lamp">Lamp</option>
+                                    <option value="Wardrobe">Wardrobe</option>
+                                    <option value="Storage Rack">Storage Rack</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <x-input-error :messages="$errors->get('type')" class="mt-2" />
                             </div>
 
                             <div class="mt-4">
@@ -55,6 +66,13 @@
                                 <x-text-area id="description" class="block mt-1 w-full" type="text"
                                     name="description">{{ $product->description }}</x-text-area>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-4">
+                                <x-input-label for="price" :value="__('Price')" />
+                                <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
+                                    :value="$product->price" required />
+                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
                             </div>
 
                             <div class="mt-4 flex justify-between">

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountSettingsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VoucherController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,16 +26,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AccountSettingsController::class, 'indexHome'])->name('home');
 Route::get('/dashboard', [AccountSettingsController::class, 'indexDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::middleware('auth')->group(function () {
 
     // Products
     Route::resource('/products', ProductController::class);
-    // Route::get('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-
+    Route::get('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
     // Vouchers
     Route::resource('/vouchers', VoucherController::class);
-    // Route::get('/vouchers/{voucher}', [VoucherController::class, 'destroy'])->name('vouchers.destroy');
+    Route::get('/vouchers/{id}', [VoucherController::class, 'delete'])->name('vouchers.delete');
 
     // Orders
 
@@ -45,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('account/{user}/edit', [AccountSettingsController::class, 'accountEdit'])->name('account.edit');
     Route::put('account/{user}', [AccountSettingsController::class, 'accountUpdate'])->name('account.update');
     Route::delete('/account/{id}', [AccountSettingsController::class, 'destroy'])->name('account.destroy');
+    Route::get('/account/{id}', [AccountSettingsController::class, 'delete'])->name('account.delete');
 
     // Profile / Settings
     Route::get('/profile', [ProfileController::class, 'index'])->name('showProfile');

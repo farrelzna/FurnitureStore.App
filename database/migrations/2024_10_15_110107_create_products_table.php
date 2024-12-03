@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('price');
             $table->integer('stock');
+            $table->enum('type', ['Chair', 'Sofa', 'Table', 'Bed', 'Lamp', 'Wardrobe', 'Storage Rack', 'Other']);
             $table->string('image')->default('/public/no-image.png');
             $table->timestamps();
         });

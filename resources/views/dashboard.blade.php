@@ -34,19 +34,39 @@
                     <!-- Example Dashboard Stats -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
                         <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
-                            <h4 class="text-lg font-semibold">Total Users</h4>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd"/>
+                                    <h4 class="text-lg font-semibold">Total Users</h4>
+                                </svg>                                                       
+                            </div>
                             <p class="mt-2 text-2xl">{{ $emailCount }}</p>
                         </div>
                         <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
-                            <h4 class="text-lg font-semibold">Total Products</h4>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M14 7h-4v3a1 1 0 0 1-2 0V7H6a1 1 0 0 0-.997.923l-.917 11.924A2 2 0 0 0 6.08 22h11.84a2 2 0 0 0 1.994-2.153l-.917-11.924A1 1 0 0 0 18 7h-2v3a1 1 0 1 1-2 0V7Zm-2-3a2 2 0 0 0-2 2v1H8V6a4 4 0 0 1 8 0v1h-2V6a2 2 0 0 0-2-2Z" clip-rule="evenodd"/>
+                                    <h4 class="text-lg font-semibold">Total Products</h4>
+                                </svg>  
+                            </div>
                             <p class="mt-2 text-2xl">{{ $productCount }}</p>
                         </div>
                         <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
-                            <h4 class="text-lg font-semibold">Total Vouchers</h4>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M20.29 8.567c.133.323.334.613.59.85v.002a3.536 3.536 0 0 1 0 5.166 2.442 2.442 0 0 0-.776 1.868 3.534 3.534 0 0 1-3.651 3.653 2.483 2.483 0 0 0-1.87.776 3.537 3.537 0 0 1-5.164 0 2.44 2.44 0 0 0-1.87-.776 3.533 3.533 0 0 1-3.653-3.654 2.44 2.44 0 0 0-.775-1.868 3.537 3.537 0 0 1 0-5.166 2.44 2.44 0 0 0 .775-1.87 3.55 3.55 0 0 1 1.033-2.62 3.594 3.594 0 0 1 2.62-1.032 2.401 2.401 0 0 0 1.87-.775 3.535 3.535 0 0 1 5.165 0 2.444 2.444 0 0 0 1.869.775 3.532 3.532 0 0 1 3.652 3.652c-.012.35.051.697.184 1.02ZM9.927 7.371a1 1 0 1 0 0 2h.01a1 1 0 0 0 0-2h-.01Zm5.889 2.226a1 1 0 0 0-1.414-1.415L8.184 14.4a1 1 0 0 0 1.414 1.414l6.218-6.217Zm-2.79 5.028a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01Z" clip-rule="evenodd"/>
+                                    <h4 class="text-lg font-semibold">Total Vouchers</h4>
+                                </svg>                              
+                            </div>
                             <p class="mt-2 text-2xl">{{ $voucherCount }}</p>
                         </div>
                         <div class="p-4 dark:bg-gray-800 text-white hover:bg-gray-700 rounded-lg shadow">
-                            <h4 class="text-lg font-semibold">Pending Tasks</h4>
+                            <div class="flex items-center gap-2">
+                                <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm13.707-1.293a1 1 0 0 0-1.414-1.414L11 12.586l-1.793-1.793a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.414 0l4-4Z" clip-rule="evenodd"/>
+                                    <h4 class="text-lg font-semibold">Pending Tasks</h4>
+                                </svg>
+                            </div>                                  
                             <p class="mt-2 text-2xl">89</p>
                         </div>
                     </div>

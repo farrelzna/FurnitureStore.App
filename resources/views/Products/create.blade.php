@@ -39,10 +39,10 @@
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="price" :value="__('Price')" />
-                                <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
-                                    :value="old('price')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                                <x-input-label for="type" :value="__('Category')" />
+                                <x-text-input id="type" class="block mt-1 w-full" type="text" name="type"
+                                    :value="$product->type" required />
+                                <x-input-error :messages="$errors->get('type')" class="mt-2" />
                             </div>
 
                             <div class="mt-4">
@@ -58,6 +58,13 @@
                                     name="description" required autofocus
                                     autocomplete="username">{{ old('description') }}</x-text-area>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-4">
+                                <x-input-label for="price" :value="__('Price')" />
+                                <x-text-input id="price" class="block mt-1 w-full" type="number" name="price"
+                                    :value="old('price')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
                             </div>
 
                             <div class="mt-4 flex justify-between">

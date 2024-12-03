@@ -12,9 +12,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::paginate(6);
+        $product = Product::where('name', 'like', '%' . $request->search . '%')->orderBy('name', 'asc')->paginate(6);
+
         return view('products.index', compact('product'));
     }
     
@@ -34,6 +35,7 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
+            'type' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             ]
@@ -47,6 +49,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'price' => str_replace('.', '', $request->price),
             'stock' => $request->stock,
+            'type' => $request->type,
             'description' => $request->description,
             'image' => 'upload-image/' . $imageName,
         ]);
@@ -66,6 +69,7 @@ class ProductController extends Controller
             'name' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|numeric',
+            'type' => 'required',
             'description' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
@@ -75,6 +79,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'price' => str_replace(',', '', $request->price),
             'stock' => $request->stock,
+            'type' => $request->type,
             'description' => $request->description,
         ]);
 
@@ -106,6 +111,15 @@ class ProductController extends Controller
         }
 
         $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
+
+    public function delete(Product $product, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
 }

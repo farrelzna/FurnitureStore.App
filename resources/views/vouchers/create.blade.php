@@ -38,20 +38,6 @@
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="discount" :value="__('Discount (Price)')" />
-                                <x-text-input id="discount" class="block mt-1 w-full" type="number" name="discount"
-                                    :value="old('discount')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('discount')" class="mt-2" />
-                            </div>
-
-                            <div class="mt-4">
-                                <x-input-label for="stock" :value="__('Stock')" />
-                                <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock"
-                                    :value="old('stock')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('stock')" class="mt-2" />
-                            </div>
-
-                            <div class="mt-4">
                                 <x-input-label for="type" :value="__('Discount')" />
                                 <select id="type" name="type"
                                     class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md w-full"
@@ -64,11 +50,25 @@
                             </div>
 
                             <div class="mt-4">
+                                <x-input-label for="stock" :value="__('Stock')" />
+                                <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock"
+                                    :value="old('stock')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('stock')" class="mt-2" />
+                            </div>
+
+                            <div class="mt-4">
                                 <x-input-label for="description" :value="__('Description')" />
                                 <x-text-area id="description" class="block mt-1 w-full" type="text"
                                     name="description" required autofocus
                                     autocomplete="username">{{ old('description') }}</x-text-area>
                                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+                            
+                            <div class="mt-4">
+                                <x-input-label for="discount" :value="__('Discount (Price)')" />
+                                <x-text-input id="discount" class="block mt-1 w-full" type="number" name="discount"
+                                    :value="old('discount')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('discount')" class="mt-2" />
                             </div>
 
                             <div class="mt-4 flex justify-between">

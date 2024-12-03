@@ -63,7 +63,7 @@ class AccountSettingsController extends Controller
 
     public function indexHome(Request $request)
     {
-        $voucher = Voucher::all();
+        $voucher = Voucher::simplePaginate(4);
         $products = Product::simplePaginate(3);
         $users = User::all();
         return view('home', compact('users', 'products', 'voucher'));
@@ -138,5 +138,13 @@ class AccountSettingsController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/home');
+    }
+
+    public function delete(User $user, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('account.index')->with('success', 'Account deleted successfully');
     }
 }

@@ -14,7 +14,8 @@ class VoucherController extends Controller
      */
     public function index()
     {
-        $voucher = Voucher::paginate(6);
+        $voucher = Voucher::where('name', 'like', '%' . request()->search . '%')->orderBy('name', 'asc')->paginate(6);
+        
         return view('vouchers.index', compact('voucher'));
     }
 
@@ -123,13 +124,26 @@ class VoucherController extends Controller
     /**
      * Remove the specified resource from storage.
      */ 
-    public function destroy(Voucher $voucher)
+    public function destroy(Voucher $voucher    )
     {
-        if ($voucher->image === 'noimage.png') {
+        if ($voucher->image !== 'noimage.png') {
             Storage::disk('local')->delete('app/public/' . $voucher->image);
         }
-
+    
         $voucher->delete();
-        return redirect()->route('vouchers.index')->with('success', 'voucher deleted successfully');
+
+        return redirect()->route('vouchers.index')->with('success', 'Voucher deleted successfully.');
+    }    
+
+    public function delete(Voucher $voucher, $id)
+    {
+         //  menghapus data, mencari dengan where, lalu hapus dengan delete()
+         $voucher = Voucher::findOrFail($id);
+
+         // Hapus akun
+         $voucher->delete();
+
+         // Redirect dengan pesan sukses
+         return redirect()->route('vouchers.index')->with('success', 'Voucher deleted successfully');
     }
 }
